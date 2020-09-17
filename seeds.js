@@ -7,7 +7,7 @@ let data = [
         image: "latte.jpg",
         type: "drink",
         description: "A beautiful latte, with your choice of natural flavor",
-        price: 3.95,
+        price: "3.95",
         inStock: true
     },
     {
@@ -15,7 +15,7 @@ let data = [
         image: "coldBrew.jpg",
         type: "drink",
         description: "Our craft cold brew is a refreshing summer treat",
-        price: 4.95,
+        price: "4.95",
         inStock: true
     },
     {
@@ -23,7 +23,7 @@ let data = [
         image: "chai.jpg",
         type: "drink",
         description: "Our Chai Latte is made from Indian Chai Tea from Ann Arbor's TeaHaus",
-        price: 4,
+        price: "4",
         inStock: false
     },
     {
@@ -31,7 +31,7 @@ let data = [
         image: "bananaMuffin.jpg",
         type: "food",
         description: "Made with real bananas! Gluten and dairy free",
-        price: 2.50,
+        price: "2.50",
         inStock: true
     },
     {
@@ -39,7 +39,7 @@ let data = [
         image: "cressoint.jpg",
         type: "food",
         description: "Add chocolate filling for an extra tasty treat!",
-        price: 1.50,
+        price: "1.50",
         inStock: false
     },
     {
@@ -47,7 +47,7 @@ let data = [
         image: "avocadoToast.jpg",
         type: "food",
         description: "For all you millenials out there, this is way better than buying a house!",
-        price: 6,
+        price: "6",
         inStock: true
     },
 ]

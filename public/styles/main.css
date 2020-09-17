@@ -17,6 +17,10 @@ body {
 	color: white;
 }
 
+a {
+	color: white;
+}
+
 /*Color Themes*/
 
 .themeDark {
@@ -74,6 +78,19 @@ hr {
 	background-color: rgba(50, 50, 50, 0.6);
 }
 
+.menu a {
+	color: white;
+}
+
+.card.bg-light {
+	color: black;
+}
+
 .outOfStock {
 	text-decoration: line-through;
+}
+
+.outOfStockNotification {
+	color: red;
+	font-weight: 600;
 }

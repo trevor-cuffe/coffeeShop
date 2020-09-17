@@ -1,4 +1,4 @@
-<%- include("partials/header") %>
+<%- include("../partials/header") %>
 
 <div class="container">
     <header class="jumbotron bg-dark">
@@ -22,8 +22,10 @@
         <div>
             <% drinkItems.forEach( (item) => { %> 
                 <p>
-                    <span <% if (!item.inStock) { %> class="outOfStock" <% } %>  >
-                    <strong><%= item.name %></strong></span>
+                    <a href="/menu/<%= item._id %>" 
+                        <% if (!item.inStock) { %> class="outOfStock" <% } %>
+                    >
+                    <strong><%= item.name %></strong></a>
                     <span style="float:right;"><%= item.price %></span>
                 </p>
     
@@ -40,8 +42,10 @@
         <div>
             <% foodItems.forEach( (item) => { %> 
                 <p>
-                    <span <% if (!item.inStock) { %> class="outOfStock" <% } %>  >
-                    <strong><%= item.name %></strong></span>
+                    <a href="/menu/<%= item._id %>" 
+                        <% if (!item.inStock) { %> class="outOfStock" <% } %>
+                    >
+                    <strong><%= item.name %></strong></a>
                     <span style="float:right;"><%= item.price %></span>
                 </p>
     
@@ -56,4 +60,4 @@
 </div>
 
 
-<%- include("partials/footer") %> 
+<%- include("../partials/footer") %> 

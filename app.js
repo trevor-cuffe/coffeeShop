@@ -23,6 +23,7 @@ app.get("/", (req, res) => {
     res.render("home");
 });
 
+//INDEX
 app.get("/menu", (req, res) => {
 
     MenuItem.find({type:"drink"}, (err, drinkItems) => {
@@ -35,13 +36,37 @@ app.get("/menu", (req, res) => {
                     console.error(err);
                     res.redirect("/");
                 } else {
-                    res.render("menu", {drinkItems: drinkItems, foodItems, foodItems});
+                    res.render("menu/index", {drinkItems: drinkItems, foodItems, foodItems});
                 }
             })
         }
     })
 
 });
+
+//SHOW
+app.get("/menu/:id", (req, res) => {
+    let id = req.params.id;
+    MenuItem.findById(id, (err, menuItem) => {
+        if (err) {
+            console.error(err);
+            res.redirect("/menu");
+        } else {
+            res.render("menu/show", {menuItem: menuItem})
+        }
+
+    });
+});
+
+//NEW
+
+//CREATE
+
+//EDIT
+
+//UPDATE
+
+//DELETE
 
 
 

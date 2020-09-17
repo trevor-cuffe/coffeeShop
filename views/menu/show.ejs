@@ -1,0 +1,24 @@
+<%- include("../partials/header") %> 
+
+
+
+<div class="container">
+    <br>
+    <a class="m-4" href="/menu"><i class="fas fa-arrow-left"></i> Back</a>
+    <div class="card bg-light m-2">
+        <img class="card-img-top" alt= "<% menuItem.name %> image"  src="/images/<%= menuItem.image %>">
+
+        <div class="card-body">
+            <h4 class="float-right">$<%= menuItem.price %></h4>
+            <h4 class="card-title"><%= menuItem.name %></h4>
+            <p class="card-text"><%= menuItem.description %></p>
+            <% if(!menuItem.inStock) { %> 
+                <p class="card-text outOfStockNotification">Out Of Stock</p>
+            <% } %> 
+        </div>
+
+    </div>
+</div>
+
+
+<%- include("../partials/footer") %> 
