@@ -17,10 +17,30 @@ mongoose.set('useUnifiedTopology', true);
 //connect to Mongo db
 mongoose.connect('mongodb://localhost:27017/coffee_shop_app');
 
-seedDB();
+// seedDB();
 
 app.get("/", (req, res) => {
     res.render("home");
+});
+
+app.get("/menu", (req, res) => {
+
+    MenuItem.find({type:"drink"}, (err, drinkItems) => {
+        if (err) {
+            console.error(err);
+            res.redirect("/");
+        } else {
+            MenuItem.find({type:"food"}, (err, foodItems) => {
+                if (err) {
+                    console.error(err);
+                    res.redirect("/");
+                } else {
+                    res.render("menu", {drinkItems: drinkItems, foodItems, foodItems});
+                }
+            })
+        }
+    })
+
 });
 
 

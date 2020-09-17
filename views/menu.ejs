@@ -1,0 +1,59 @@
+<%- include("partials/header") %>
+
+<div class="container">
+    <header class="jumbotron bg-dark">
+        <div class="container">
+            <div class="container">
+                <h1>Check out our Menu:</h1>
+                <p>We have plenty of delicious drinks and snacks!</p>
+            </div>
+        </div>
+    
+    </header>
+
+    <div class="menu">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Drinks:</h3>
+            </div>
+        </div>
+    
+        <div>
+            <% drinkItems.forEach( (item) => { %> 
+                <p>
+                    <span <% if (!item.inStock) { %> class="outOfStock" <% } %>  >
+                    <strong><%= item.name %></strong></span>
+                    <span style="float:right;"><%= item.price %></span>
+                </p>
+    
+            <% }); %> 
+        </div>
+    
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Snacks:</h3>
+            </div>
+        </div>
+    
+    
+        <div>
+            <% foodItems.forEach( (item) => { %> 
+                <p>
+                    <span <% if (!item.inStock) { %> class="outOfStock" <% } %>  >
+                    <strong><%= item.name %></strong></span>
+                    <span style="float:right;"><%= item.price %></span>
+                </p>
+    
+            <% }); %> 
+        </div>
+    
+
+
+    </div>
+
+
+</div>
+
+
+<%- include("partials/footer") %> 

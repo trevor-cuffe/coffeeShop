@@ -66,3 +66,14 @@ hr {
 	border-top: 1px solid #B09A9A;
 	border-bottom: 1px solid rgba(49, 27, 27, 1);
 }
+
+
+.menu {
+	margin: 20px 20%;
+	padding: 30px 10%;
+	background-color: rgba(50, 50, 50, 0.6);
+}
+
+.outOfStock {
+	text-decoration: line-through;
+}
