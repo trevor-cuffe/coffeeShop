@@ -1,6 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
+import MenuItem from "./models/menuItem.js";
+import seedDB from "./seeds.js";
 
 const app = express();
 
@@ -15,7 +17,7 @@ mongoose.set('useUnifiedTopology', true);
 //connect to Mongo db
 mongoose.connect('mongodb://localhost:27017/coffee_shop_app');
 
-
+seedDB();
 
 app.get("/", (req, res) => {
     res.render("home");
