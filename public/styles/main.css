@@ -71,6 +71,10 @@ hr {
 	border-bottom: 1px solid rgba(49, 27, 27, 1);
 }
 
+.container.bg-cover {
+	background-color: rgba(50, 50, 50, 0.6);
+}
+
 
 .menu {
 	margin: 20px 20%;
@@ -86,6 +90,10 @@ hr {
 	color: black;
 }
 
+.limitedDisplay {
+	max-width: 600px;
+}
+
 .outOfStock {
 	text-decoration: line-through;
 }
@@ -93,4 +101,8 @@ hr {
 .outOfStockNotification {
 	color: red;
 	font-weight: 600;
+}
+
+#newMenuItem {
+	color: black;
 }

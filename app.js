@@ -1,4 +1,5 @@
 import express from "express";
+import expressSanitizer from "express-sanitizer";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import MenuItem from "./models/menuItem.js";
@@ -10,6 +11,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.use(express.static("images"));
 app.set("view engine", "ejs");
+app.use(expressSanitizer());
 
 //fix mongoose deprecation warnings:
 mongoose.set('useNewUrlParser', true);
@@ -44,6 +46,29 @@ app.get("/menu", (req, res) => {
 
 });
 
+//NEW
+app.get("/menu/new", (req, res) => {
+    res.render("menu/new");
+});
+
+//CREATE
+app.post("/menu", (req, res) => {
+    let newMenuItem = req.body.menuItem;
+    if (!newMenuItem.image) {
+        newMenuItem.image = "/images/default.jpg";
+    }
+    newMenuItem.description = req.sanitize(newMenuItem.description);
+    MenuItem.create(newMenuItem, (err, menuItem) => {
+        if (err) {
+            console.error(err);
+            res.render("new");
+        } else {
+            res.redirect("/menu");
+        }
+    })
+});
+
+
 //SHOW
 app.get("/menu/:id", (req, res) => {
     let id = req.params.id;
@@ -57,10 +82,6 @@ app.get("/menu/:id", (req, res) => {
 
     });
 });
-
-//NEW
-
-//CREATE
 
 //EDIT
 

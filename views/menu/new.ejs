@@ -1,0 +1,40 @@
+<%- include("../partials/header") %> 
+
+<div class="container bg-cover limitedDisplay">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="text-center">Enter a New Menu Item:</h1>
+            <form action="/menu" method="POST" id="newMenuItem">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="menuItem[name]" placeholder="Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="menuItem[image]" placeholder="Image File Name">
+                </div>
+                <div class="form-group">
+                    <select id="itemTypeSelect" class="form-control" name="menuItem[type]">
+                        <option value="drink" selected>drink</option>
+                        <option value="food">food</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" form="newMenuItem" name="menuItem[description]" placeholder="Description..." required></textarea>
+                </div>
+                <div class="form-group">
+                    $ <input type="text" class="form-control" name="menuItem[price]" placeholder="0.00" required>
+                </div>
+                <div class="form-group">
+                    <select id="inStockSelect" class="form-control" name="menuItem[inStock]">
+                        <option value="true" selected>yes</option>
+                        <option value="false">no</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input class="btn btn-lg btn-primary btn-block" type="submit">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include("../partials/footer") %> 
