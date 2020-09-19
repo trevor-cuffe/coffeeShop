@@ -84,6 +84,18 @@ app.get("/menu/:id", (req, res) => {
 });
 
 //EDIT
+app.get("/menu/:id/edit", (req, res) => {
+    let id = req.params.id;
+    MenuItem.findById(id, (err, menuItem) => {
+        if (err) {
+            console.error(err);
+            res.redirect("/menu");
+        } else {
+            res.render("menu/edit", {menuItem: menuItem})
+        }
+
+    });
+});
 
 //UPDATE
 

@@ -1,0 +1,47 @@
+<%- include("../partials/header") %> 
+
+<div class="container bg-cover limitedDisplay">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="text-center">Edit: <%= menuItem.title %> </h1>
+            <form action="/menu/<%= menuItem._id %>" method="POST" id="newMenuItem">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="menuItem[name]" placeholder="Name" value="<%= menuItem.name %>" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="menuItem[image]" placeholder="Image File Name" value="<%= menuItem.image %>" >
+                </div>
+                <div class="form-group">
+                    <select id="itemTypeSelect" class="form-control" name="menuItem[type]">
+                        <% 
+                            let types = ["drink", "food"];
+                            types.forEach( (type) => {
+                                let selected = (menuItem.type === type) ? "selected" : "";
+                                %> <option value="drink" <%= selected %> ><%= type %></option> <%
+
+                            });
+                            
+                        %> 
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" form="newMenuItem" name="menuItem[description]" placeholder="Description..."  required><%= menuItem.description %></textarea>
+                </div>
+                <div class="form-group">
+                    $ <input type="text" class="form-control" name="menuItem[price]" style="display: inline;" placeholder="0.00" value="<%= menuItem.price %>" required>
+                </div>
+                <div class="form-group">
+                    <select id="inStockSelect" class="form-control" name="menuItem[inStock]">
+                        <option value="true" <%= (menuItem.inStock) ? "selected" : "" %> >yes</option>
+                        <option value="false" <%= !(menuItem.inStock) ? "selected" : "" %> >no</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input class="btn btn-lg btn-primary btn-block" type="submit">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include("../partials/footer") %> 
