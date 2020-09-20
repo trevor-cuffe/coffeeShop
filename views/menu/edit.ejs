@@ -3,8 +3,8 @@
 <div class="container bg-cover limitedDisplay">
     <div class="row">
         <div class="col-sm-12">
-            <h1 class="text-center">Edit: <%= menuItem.title %> </h1>
-            <form action="/menu/<%= menuItem._id %>" method="POST" id="newMenuItem">
+            <h1 class="text-center">Edit: <%= menuItem.name %> </h1>
+            <form class="ui form" action="/menu/<%= menuItem._id %>?_method=PUT" method="POST" id="newMenuItem">
                 <div class="form-group">
                     <input type="text" class="form-control" name="menuItem[name]" placeholder="Name" value="<%= menuItem.name %>" required>
                 </div>

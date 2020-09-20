@@ -22,7 +22,7 @@
         <div>
             <% drinkItems.forEach( (item) => { %> 
                 <p>
-                    <a href="/menu/<%= item._id %>" 
+                    <a href="/menu/<%= item._id %>/" 
                         <% if (!item.inStock) { %> class="outOfStock" <% } %>
                     >
                     <strong><%= item.name %></strong></a>

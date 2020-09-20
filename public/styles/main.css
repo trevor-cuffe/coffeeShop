@@ -106,3 +106,13 @@ hr {
 #newMenuItem {
 	color: black;
 }
+
+.form-group {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.form-control {
+	display: inline-block;
+	flex: 0 1 100%;
+}

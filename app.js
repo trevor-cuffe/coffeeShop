@@ -2,6 +2,7 @@ import express from "express";
 import expressSanitizer from "express-sanitizer";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
+import methodOverride from "method-override";
 import MenuItem from "./models/menuItem.js";
 import seedDB from "./seeds.js";
 
@@ -11,6 +12,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.use(express.static("images"));
 app.set("view engine", "ejs");
+app.use(methodOverride("_method"));
 app.use(expressSanitizer());
 
 //fix mongoose deprecation warnings:
@@ -33,11 +35,13 @@ app.get("/menu", (req, res) => {
             console.error(err);
             res.redirect("/");
         } else {
+            drinkItems.sort((a,b) => (a.name > b.name) ? 1: -1)
             MenuItem.find({type:"food"}, (err, foodItems) => {
                 if (err) {
                     console.error(err);
                     res.redirect("/");
                 } else {
+                    foodItems.sort((a,b) => (a.name > b.name) ? 1: -1)
                     res.render("menu/index", {drinkItems: drinkItems, foodItems, foodItems});
                 }
             })
@@ -99,7 +103,36 @@ app.get("/menu/:id/edit", (req, res) => {
 
 //UPDATE
 
+app.put("/menu/:id", (req, res) => {
+    let id = req.params.id;
+    let newMenuItem = req.body.menuItem;
+    if (!newMenuItem.image) {
+        newMenuItem.image = "/images/default.jpg";
+    }
+    newMenuItem.description = req.sanitize(newMenuItem.description);
+
+    MenuItem.findByIdAndUpdate(id, newMenuItem, (err, updatedMenuItem) => {
+        if(err) {
+            console.error(err);
+            res.redirect("/menu");
+        } else {
+            res.redirect(`/menu/${id}/`);
+        }
+    });
+});
+
 //DELETE
+app.delete("/menu/:id", (req, res) => {
+    let id = req.params.id;
+    MenuItem.findByIdAndDelete(id, (err) => {
+        if (err) {
+            console.error(err);
+        } else {
+            res.redirect("/menu");
+        }
+    })
+})
+
 
 
 
