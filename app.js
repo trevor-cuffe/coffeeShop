@@ -1,9 +1,14 @@
 import express from "express";
 import expressSanitizer from "express-sanitizer";
+import sessions from "client-sessions";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import methodOverride from "method-override";
+import flash from "connect-flash";
+import passport from "passport";
+import LocalStrategy from "passport-local";
 import MenuItem from "./models/menuItem.js";
+
 import seedDB from "./seeds.js";
 
 const app = express();
