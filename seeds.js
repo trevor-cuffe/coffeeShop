@@ -5,7 +5,7 @@ let data = [
     {
         name: "Latte",
         image: "latte.jpg",
-        type: "drink",
+        type: "coffee",
         description: "A beautiful latte, with your choice of natural flavor",
         price: "3.95",
         inStock: true
@@ -13,7 +13,7 @@ let data = [
     {
         name: "Cold Brew",
         image: "coldBrew.jpg",
-        type: "drink",
+        type: "coffee",
         description: "Our craft cold brew is a refreshing summer treat",
         price: "4.95",
         inStock: true
@@ -21,10 +21,26 @@ let data = [
     {
         name: "Chai Latte",
         image: "chai.jpg",
-        type: "drink",
+        type: "tea",
         description: "Our Chai Latte is made from Indian Chai Tea from Ann Arbor's TeaHaus",
         price: "4",
         inStock: false
+    },
+    {
+        name: "Pumpkin Chai",
+        image: "pumpkinChai.jpg",
+        type: "tea",
+        description: "A seasonal favorite, with pumpkin spice and pieces of natural pumpkin!",
+        price: "5",
+        inStock: true
+    },
+    {
+        name: "Chinese Milky Jade",
+        image: "milkyJade.jpg",
+        type: "tea",
+        description: "A premium oolong tea from the TeaHaus in Ann Arbor, and our owner's personal favorite!",
+        price: "5",
+        inStock: true
     },
     {
         name: "Banana Muffin",

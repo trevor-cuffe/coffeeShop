@@ -14,10 +14,10 @@
                 <div class="form-group">
                     <select id="itemTypeSelect" class="form-control" name="menuItem[type]">
                         <% 
-                            let types = ["drink", "food"];
+                            let types = ["coffee", "tea", "food"];
                             types.forEach( (type) => {
                                 let selected = (menuItem.type === type) ? "selected" : "";
-                                %> <option value="drink" <%= selected %> ><%= type %></option> <%
+                                %> <option value="<%= type %>" <%= selected %> ><%= type %></option> <%
 
                             });
                             

@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
+mongoose.set("useFindAndModify", false);
+
 const menuItemSchema = new mongoose.Schema({
     name: String,
     image: String,

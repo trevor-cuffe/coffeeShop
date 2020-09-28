@@ -15,12 +15,31 @@
 
         <div class="row">
             <div class="col-md-12">
-                <h3>Drinks:</h3>
+                <h3>Coffee:</h3>
             </div>
         </div>
     
         <div>
-            <% drinkItems.forEach( (item) => { %> 
+            <% coffeeItems.forEach( (item) => { %> 
+                <p>
+                    <a href="/menu/<%= item._id %>/" 
+                        <% if (!item.inStock) { %> class="outOfStock" <% } %>
+                    >
+                    <strong><%= item.name %></strong></a>
+                    <span style="float:right;"><%= item.price %></span>
+                </p>
+    
+            <% }); %> 
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Tea:</h3>
+            </div>
+        </div>
+    
+        <div>
+            <% teaItems.forEach( (item) => { %> 
                 <p>
                     <a href="/menu/<%= item._id %>/" 
                         <% if (!item.inStock) { %> class="outOfStock" <% } %>

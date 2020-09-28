@@ -37,23 +37,31 @@ app.get("/", (req, res) => {
 //INDEX
 app.get("/menu", (req, res) => {
 
-    MenuItem.find({type:"drink"}, (err, drinkItems) => {
+    MenuItem.find({type:"coffee"}, (err, coffeeItems) => {
         if (err) {
             console.error(err);
             res.redirect("/");
         } else {
-            drinkItems.sort((a,b) => (a.name > b.name) ? 1: -1)
-            MenuItem.find({type:"food"}, (err, foodItems) => {
+            coffeeItems.sort((a,b) => (a.name > b.name) ? 1: -1);
+            MenuItem.find({type:"tea"}, (err, teaItems) => {
                 if (err) {
                     console.error(err);
                     res.redirect("/");
                 } else {
-                    foodItems.sort((a,b) => (a.name > b.name) ? 1: -1)
-                    res.render("menu/index", {drinkItems: drinkItems, foodItems, foodItems});
+                    teaItems.sort((a,b) => (a.name > b.name) ? 1: -1);
+                    MenuItem.find({type:"food"}, (err, foodItems) => {
+                        if (err) {
+                            console.error(err);
+                            res.redirect("/");
+                        } else {
+                            foodItems.sort((a,b) => (a.name > b.name) ? 1: -1);
+                            res.render("menu/index", {coffeeItems: coffeeItems, teaItems: teaItems, foodItems, foodItems});
+                        }
+                    });
                 }
-            })
+            });
         }
-    })
+    });
 
 });
 
