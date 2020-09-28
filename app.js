@@ -19,7 +19,14 @@ app.use(expressSanitizer());
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 //connect to Mongo db
-mongoose.connect('mongodb://localhost:27017/coffee_shop_app');
+let dbUrl = process.env.databaseURL || 'mongodb://localhost:27017/coffee_shop_app';
+mongoose.connect(dbUrl, {
+    useCreateIndex: true
+}).then( () => {
+    console.log("connected to DB!");
+}).catch( (err) => {
+    console.error(err);
+});
 
 // seedDB();
 
