@@ -28,7 +28,6 @@ mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 //connect to Mongo db
 let dbUrl = process.env.databaseURL || 'mongodb://localhost:27017/coffee_shop_app';
-console.log(dbUrl);
 mongoose.connect(dbUrl, {
     useCreateIndex: true
 }).then( () => {
