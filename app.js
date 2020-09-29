@@ -7,8 +7,11 @@ import methodOverride from "method-override";
 import flash from "connect-flash";
 import passport from "passport";
 import LocalStrategy from "passport-local";
+
+import User from "./models/user.js"
 import MenuItem from "./models/menuItem.js";
 
+import randomString from "crypto-random-string";
 import seedDB from "./seeds.js";
 
 const app = express();
@@ -34,6 +37,36 @@ mongoose.connect(dbUrl, {
 });
 
 // seedDB();
+
+
+//Passport Configuration
+let sessionKey = process.env.SESSION_SECRET || randomString({length: 20});
+let cartKey = process.env.CART_SECRET || randomString({length: 20});
+app.use(sessions({
+    cookieName: "session",
+    secret: sessionKey,
+    duration: 1000 * 60 * 60 * 24,
+    activeDuration: 1000 * 60 * 5,
+    httpOnly: true,
+    secure: true,
+    ephemeral: true
+}));
+app.use(sessions({
+    cookieName: "shopping_cart",
+    secret: cartKey,
+    duration: 1000 * 60 * 60 * 24 * 7,
+    httpOnly: true,
+    secure: true,
+    ephemeral: false
+}));
+
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 
 app.get("/", (req, res) => {
     res.render("home");
