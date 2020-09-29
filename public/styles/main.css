@@ -116,3 +116,7 @@ hr {
 	display: inline-block;
 	flex: 0 1 100%;
 }
+
+.container form {
+	padding: 20px;
+}
