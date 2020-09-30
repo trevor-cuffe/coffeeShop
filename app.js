@@ -70,10 +70,16 @@ app.use(passport.session());
 //Define Local Variables
 app.use( (req, res, next) => {
     res.locals.currentUser = req.user;
+    res.locals.currentPath = req.originalUrl;
     res.locals.error_message = req.flash("error");
     res.locals.success_message = req.flash("success");
     return next();
 });
+
+// app.use( (req, res, next) => {
+//     console.log(req.originalUrl);
+//     return next();
+// })
 
 
 //Include Routes
