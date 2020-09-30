@@ -9,7 +9,9 @@ import passport from "passport";
 import LocalStrategy from "passport-local";
 
 import User from "./models/user.js"
-import MenuItem from "./models/menuItem.js";
+
+import indexRoutes from "./routes/index.js";
+import menuRoutes from "./routes/menuItem.js";
 
 import randomString from "crypto-random-string";
 import seedDB from "./seeds.js";
@@ -51,14 +53,14 @@ app.use(sessions({
     secure: true,
     ephemeral: true
 }));
-app.use(sessions({
-    cookieName: "shopping_cart",
-    secret: cartKey,
-    duration: 1000 * 60 * 60 * 24 * 7,
-    httpOnly: true,
-    secure: true,
-    ephemeral: false
-}));
+// app.use(sessions({
+//     cookieName: "shopping_cart",
+//     secret: cartKey,
+//     duration: 1000 * 60 * 60 * 24 * 7,
+//     httpOnly: true,
+//     secure: true,
+//     ephemeral: false
+// }));
 
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
@@ -66,133 +68,16 @@ passport.deserializeUser(User.deserializeUser());
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-
-app.get("/", (req, res) => {
-    res.render("home");
-});
-
-app.get("/register", (req, res) => {
-    res.render("register");
-});
-
-app.get("/login", (req, res) => {
-    res.render("login");
-});
-
-//INDEX
-app.get("/menu", (req, res) => {
-
-    MenuItem.find({type:"coffee"}, (err, coffeeItems) => {
-        if (err) {
-            console.error(err);
-            res.redirect("/");
-        } else {
-            coffeeItems.sort((a,b) => (a.name > b.name) ? 1: -1);
-            MenuItem.find({type:"tea"}, (err, teaItems) => {
-                if (err) {
-                    console.error(err);
-                    res.redirect("/");
-                } else {
-                    teaItems.sort((a,b) => (a.name > b.name) ? 1: -1);
-                    MenuItem.find({type:"food"}, (err, foodItems) => {
-                        if (err) {
-                            console.error(err);
-                            res.redirect("/");
-                        } else {
-                            foodItems.sort((a,b) => (a.name > b.name) ? 1: -1);
-                            res.render("menu/index", {coffeeItems: coffeeItems, teaItems: teaItems, foodItems, foodItems});
-                        }
-                    });
-                }
-            });
-        }
-    });
-
-});
-
-//NEW
-app.get("/menu/new", (req, res) => {
-    res.render("menu/new");
-});
-
-//CREATE
-app.post("/menu", (req, res) => {
-    let newMenuItem = req.body.menuItem;
-    if (!newMenuItem.image) {
-        newMenuItem.image = "/images/default.jpg";
-    }
-    newMenuItem.description = req.sanitize(newMenuItem.description);
-    MenuItem.create(newMenuItem, (err, menuItem) => {
-        if (err) {
-            console.error(err);
-            res.render("new");
-        } else {
-            res.redirect("/menu");
-        }
-    })
+//Define Local Variables
+app.use( (req, res, next) => {
+    res.locals.currentUser = req.user;
+    return next();
 });
 
 
-//SHOW
-app.get("/menu/:id", (req, res) => {
-    let id = req.params.id;
-    MenuItem.findById(id, (err, menuItem) => {
-        if (err) {
-            console.error(err);
-            res.redirect("/menu");
-        } else {
-            res.render("menu/show", {menuItem: menuItem})
-        }
-
-    });
-});
-
-//EDIT
-app.get("/menu/:id/edit", (req, res) => {
-    let id = req.params.id;
-    MenuItem.findById(id, (err, menuItem) => {
-        if (err) {
-            console.error(err);
-            res.redirect("/menu");
-        } else {
-            res.render("menu/edit", {menuItem: menuItem})
-        }
-
-    });
-});
-
-//UPDATE
-
-app.put("/menu/:id", (req, res) => {
-    let id = req.params.id;
-    let newMenuItem = req.body.menuItem;
-    if (!newMenuItem.image) {
-        newMenuItem.image = "/images/default.jpg";
-    }
-    newMenuItem.description = req.sanitize(newMenuItem.description);
-
-    MenuItem.findByIdAndUpdate(id, newMenuItem, (err, updatedMenuItem) => {
-        if(err) {
-            console.error(err);
-            res.redirect("/menu");
-        } else {
-            res.redirect(`/menu/${id}/`);
-        }
-    });
-});
-
-//DELETE
-app.delete("/menu/:id", (req, res) => {
-    let id = req.params.id;
-    MenuItem.findByIdAndDelete(id, (err) => {
-        if (err) {
-            console.error(err);
-        } else {
-            res.redirect("/menu");
-        }
-    })
-})
+//Include Routes
+app.use(indexRoutes);
+app.use("/menu", menuRoutes);
 
 
 

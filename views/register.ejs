@@ -1,19 +1,19 @@
 <%- include("partials/header.ejs") %>
 
 <div class="container">
-    <form action="/login" method="POST">
+    <form action="/register" method="POST">
         <div class="form-group">
             <span>Email:</span> 
-            <input class="form-control" name="email" type="email" placeholder="example@gmail.com" required>
+            <input class="form-control" name="username" type="email" placeholder="example@gmail.com" required>
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
             <span>First Name:</span> 
             <input class="form-control" name="firstName" type="text" placeholder = "First Name" required>
         </div>
         <div class="form-group">
             <span>Last Name:</span> 
             <input class="form-control" name="lastName" type="text" placeholder = "Last Name" required>
-        </div>
+        </div> -->
         <div class="form-group">
             <span>Password:</span> 
             <input class="form-control" name="password" type="password" placeholder="minimum 8 chars" minlength="8" required>

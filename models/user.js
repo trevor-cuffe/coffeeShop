@@ -4,11 +4,11 @@ import passportLocalMongoose from 'passport-local-mongoose';
 mongoose.set("useFindAndModify", false);
 
 const UserSchema = new mongoose.Schema({
-    email: String,
-    firstName: String,
-    lastName: String,
-    password: String,
-    isAdmin: Boolean
+    username: String,
+    // firstName: String,
+    // lastName: String,
+    password: String
+    // isAdmin: Boolean
 });
 
 UserSchema.plugin(passportLocalMongoose);
