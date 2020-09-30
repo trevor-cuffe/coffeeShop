@@ -1,79 +1,81 @@
 <%- include("../partials/header") %>
 
 <div class="container">
-    <header class="jumbotron bg-dark">
-        <div class="container">
-            <div class="container">
-                <h1>Check out our Menu:</h1>
+
+    <section class="menu limitedDisplay">
+
+        <div class="row header">
+            <div class="col-md-12">
+                <h2>Check out our Menu:</h1>
                 <p>We have plenty of delicious drinks and snacks!</p>
             </div>
         </div>
-    
-    </header>
 
-    <div class="menu limitedDisplay">
-
-        <div class="row">
+        <div class="row content">
             <div class="col-md-12">
-                <h3>Coffee:</h3>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Coffee:</h3>
+                    </div>
+                </div>
+            
+                <div>
+                    <% coffeeItems.forEach( (item) => { %> 
+                        <p>
+                            <a href="/menu/<%= item._id %>/" 
+                                <% if (!item.inStock) { %> class="outOfStock" <% } %>
+                            >
+                            <strong><%= item.name %></strong></a>
+                            <span style="float:right;"><%= item.price %></span>
+                        </p>
+            
+                    <% }); %> 
+                </div>
+        
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Tea:</h3>
+                    </div>
+                </div>
+            
+                <div>
+                    <% teaItems.forEach( (item) => { %> 
+                        <p>
+                            <a href="/menu/<%= item._id %>/" 
+                                <% if (!item.inStock) { %> class="outOfStock" <% } %>
+                            >
+                            <strong><%= item.name %></strong></a>
+                            <span style="float:right;"><%= item.price %></span>
+                        </p>
+            
+                    <% }); %> 
+                </div>
+            
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Snacks:</h3>
+                    </div>
+                </div>
+            
+            
+                <div>
+                    <% foodItems.forEach( (item) => { %> 
+                        <p>
+                            <a href="/menu/<%= item._id %>" 
+                                <% if (!item.inStock) { %> class="outOfStock" <% } %>
+                            >
+                            <strong><%= item.name %></strong></a>
+                            <span style="float:right;"><%= item.price %></span>
+                        </p>
+            
+                    <% }); %> 
+                </div>
+
             </div>
         </div>
-    
-        <div>
-            <% coffeeItems.forEach( (item) => { %> 
-                <p>
-                    <a href="/menu/<%= item._id %>/" 
-                        <% if (!item.inStock) { %> class="outOfStock" <% } %>
-                    >
-                    <strong><%= item.name %></strong></a>
-                    <span style="float:right;"><%= item.price %></span>
-                </p>
-    
-            <% }); %> 
-        </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <h3>Tea:</h3>
-            </div>
-        </div>
-    
-        <div>
-            <% teaItems.forEach( (item) => { %> 
-                <p>
-                    <a href="/menu/<%= item._id %>/" 
-                        <% if (!item.inStock) { %> class="outOfStock" <% } %>
-                    >
-                    <strong><%= item.name %></strong></a>
-                    <span style="float:right;"><%= item.price %></span>
-                </p>
-    
-            <% }); %> 
-        </div>
-    
-        <div class="row">
-            <div class="col-md-12">
-                <h3>Snacks:</h3>
-            </div>
-        </div>
-    
-    
-        <div>
-            <% foodItems.forEach( (item) => { %> 
-                <p>
-                    <a href="/menu/<%= item._id %>" 
-                        <% if (!item.inStock) { %> class="outOfStock" <% } %>
-                    >
-                    <strong><%= item.name %></strong></a>
-                    <span style="float:right;"><%= item.price %></span>
-                </p>
-    
-            <% }); %> 
-        </div>
-    
-
-
-    </div>
+    </section>
 
 
 </div>

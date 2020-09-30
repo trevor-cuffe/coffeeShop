@@ -3,8 +3,10 @@
 
 
 <div class="container limitedDisplay">
-    <br>    
-    <a class="mx-2 float-right" href="edit"><i class="fas fa-edit"></i></a>
+    <br>
+    <% if(currentUser) { %> 
+        <a class="mx-2 float-right" href="edit"><i class="fas fa-edit"></i></a>
+    <% } %> 
     <a class="mx-4" href="/menu"><i class="fas fa-arrow-left"></i> Back</a>
     <div class="card bg-light m-2" style="width: 100%;">
         <img class="card-img-top" alt= "<% menuItem.name %> image"  src="/images/<%= menuItem.image %>">
@@ -16,9 +18,11 @@
             <% if(!menuItem.inStock) { %> 
                 <p class="card-text outOfStockNotification">Out Of Stock</p>
             <% } %> 
+            <% if(currentUser) { %> 
             <form action="/menu/<%= menuItem._id %>?_method=DELETE" method="POST">
                 <button class="btn btn-danger">Delete From Menu</button>
             </form>
+        <% } %>
         </div>
 
     </div>

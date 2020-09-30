@@ -21,6 +21,16 @@ a {
 	color: white;
 }
 
+h1 {
+	font-weight: 700;
+	font-size: 4em;
+}
+
+h3 {
+	font-size: 2em;
+}
+
+
 /*Color Themes*/
 
 .themeDark {
@@ -45,53 +55,35 @@ a {
 }
 
 
-#content {
-	text-align: center;
-	margin-top: 25%;
-	padding: 1rem 0;
-	/*background-color: rgba(0,0,0,0.2);*/
-	text-shadow: 0px 4px 3px rgba(49, 27, 27, 0.6),
-				 0px 8px 13px rgba(49, 27, 27, 0.3),
-				 0px 18px 23px rgba(49, 27, 27, 0.2);
-}
-
-h1 {
-	font-weight: 700;
-	font-size: 4em;
-}
-
-h3 {
-	font-size: 2em;
-}
-
-
-hr {
-	width: 400px;
-	border-top: 1px solid #B09A9A;
-	border-bottom: 1px solid rgba(49, 27, 27, 1);
-}
-
-.container.bg-cover {
-	background-color: rgba(50, 50, 50, 0.6);
-}
-
-
 .menu {
-	margin: 20px 20%;
-	padding: 30px 10%;
 	background-color: rgba(50, 50, 50, 0.6);
+	margin: 50px 20%;
 }
 
-.menu a {
-	color: white;
-}
-
-.card.bg-light {
-	color: black;
-}
 
 .limitedDisplay {
 	max-width: 600px;
+}
+
+.authCard {
+	width: 600px;
+	height: 300px;
+	padding: 0;
+	margin: 30vh auto;
+	max-width: 100%;
+	border-radius: 0 30px 30px 0;
+	-webkit-border-radius: 0 30px 30px 0;
+	-moz-border-radius: 0 30px 30px 0;
+	overflow: hidden;
+	display: grid;
+	grid-gap: 0;
+	grid-template-columns: repeat(2, 1fr);
+	box-shadow: 0 10px 16px rgba(0,0,0,0.5),
+				0 6px 20px rgba(0,0,0,0.3);
+	-webkit-box-shadow: 0 10px 16px rgba(0,0,0,0.5),
+				0 6px 20px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0 10px 16px rgba(0,0,0,0.5),
+				0 6px 20px rgba(0,0,0,0.3);
 }
 
 .outOfStock {
@@ -103,20 +95,60 @@ hr {
 	font-weight: 600;
 }
 
-#newMenuItem {
-	color: black;
-}
 
-.form-group {
-	display: flex;
-	flex-flow: row wrap;
-}
 
 .form-control {
 	display: inline-block;
 	flex: 0 1 100%;
 }
 
+.card.bg-light {
+	color: black;
+}
+
+.container.bg-cover {
+	background-color: rgba(50, 50, 50, 0.6);
+}
+
 .container form {
 	padding: 20px;
+}
+
+.menu .header {
+	background-color: #806A6A;
+	text-align: center;
+	padding: 20px;
+	margin: 0;
+}
+
+.menu .content {
+	padding: 30px 10%;
+}
+
+.menu a {
+	color: white;
+}
+
+.authCard .imgDisplay {
+	display: flex;
+	background-image: url("../images/welcome.jpg");
+	background-size: cover;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	height: 100%;
+}
+
+.authCard .formDisplay {
+	background-color: rgba(50, 50, 50, 0.8);
+	display: flex;
+	align-items: center;
+}
+
+.authCard .formDisplay form {
+	width: 100%;
+}
+
+
+#newMenuItem {
+	color: black;
 }
