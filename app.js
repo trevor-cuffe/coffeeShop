@@ -1,5 +1,4 @@
 import express from "express";
-import expressSanitizer from "express-sanitizer";
 import sessions from "client-sessions";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
@@ -23,7 +22,7 @@ app.use(express.static("public"));
 app.use(express.static("images"));
 app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
-app.use(expressSanitizer());
+app.use(flash());
 
 //fix mongoose deprecation warnings:
 mongoose.set('useNewUrlParser', true);
@@ -71,6 +70,8 @@ app.use(passport.session());
 //Define Local Variables
 app.use( (req, res, next) => {
     res.locals.currentUser = req.user;
+    res.locals.error_message = req.flash("error");
+    res.locals.success_message = req.flash("success");
     return next();
 });
 
