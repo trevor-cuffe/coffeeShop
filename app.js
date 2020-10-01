@@ -8,9 +8,11 @@ import passport from "passport";
 import LocalStrategy from "passport-local";
 
 import User from "./models/user.js"
+import Cart from "./models/cart.js"
 
 import indexRoutes from "./routes/index.js";
 import menuRoutes from "./routes/menuItem.js";
+import cartRoutes from "./routes/cart.js";
 
 import randomString from "crypto-random-string";
 import seedDB from "./seeds.js";
@@ -45,21 +47,32 @@ let sessionKey = process.env.SESSION_SECRET || randomString({length: 20});
 let cartKey = process.env.CART_SECRET || randomString({length: 20});
 app.use(sessions({
     cookieName: "session",
-    secret: sessionKey,
+    secret: "my secret",
+    // secret: sessionKey,
     duration: 1000 * 60 * 60 * 24,
     activeDuration: 1000 * 60 * 5,
     httpOnly: true,
     secure: true,
     ephemeral: true
 }));
-// app.use(sessions({
-//     cookieName: "shopping_cart",
-//     secret: cartKey,
-//     duration: 1000 * 60 * 60 * 24 * 7,
-//     httpOnly: true,
-//     secure: true,
-//     ephemeral: false
-// }));
+app.use(sessions({
+    cookieName: "shopping_cart",
+    requestKey: "shopping_cart",
+    secret: cartKey,
+    duration: 1000 * 60 * 60 * 24 * 7,
+    httpOnly: true,
+    secure: true,
+    ephemeral: false
+}));
+
+app.use((req, res, next) => {
+    if(!req.shopping_cart.cart) {
+        let newCart = new Cart();
+        newCart.saveCart(req);
+    }
+    return next();
+});
+
 
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
@@ -71,6 +84,7 @@ app.use(passport.session());
 app.use( (req, res, next) => {
     res.locals.currentUser = req.user;
     res.locals.currentPath = req.originalUrl;
+    res.locals.cart = req.shopping_cart.cart;
     res.locals.error_message = req.flash("error");
     res.locals.success_message = req.flash("success");
     return next();
@@ -85,6 +99,7 @@ app.use( (req, res, next) => {
 //Include Routes
 app.use(indexRoutes);
 app.use("/menu", menuRoutes);
+app.use("/cart", cartRoutes)
 
 
 

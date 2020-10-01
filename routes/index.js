@@ -1,5 +1,6 @@
 import express from "express";
 import passport from "passport";
+import Cart from "../models/cart.js";
 import User from "../models/user.js"
 
 const router = express.Router();
@@ -56,6 +57,7 @@ router.post("/login", passport.authenticate("local",
     }), (req, res) => {
         console.log("logged in: " + req.user.username);
         req.flash("success", `Logged in as ${req.user.username}`);
+        req.shopping_cart.cart = new Cart();
         res.redirect("/");
 });
 

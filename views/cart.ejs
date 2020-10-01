@@ -1,0 +1,7 @@
+<%- include ("partials/header") %>
+
+    <% cartItems.forEach(item => { %> 
+        <li><%= item.name %>: x<%= item.quantity %></li>
+    <% }); %> 
+
+<%- include('partials/footer') %>

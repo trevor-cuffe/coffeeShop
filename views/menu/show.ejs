@@ -16,11 +16,20 @@
             <h4 class="card-title"><%= menuItem.name %></h4>
             <p class="card-text"><%= menuItem.description %></p>
             <% if(!menuItem.inStock) { %> 
-                <p class="card-text outOfStockNotification">Out Of Stock</p>
+                <span class="card-text outOfStockNotification">Out Of Stock</span>
             <% } %> 
+
+            <% if(currentUser) { %> 
+                <form action="/cart" method="POST" id="addToCartForm">
+                    <input type="hidden" name="productId" value=<%= menuItem._id %>>
+                    <input type="number" name="quantity" value="1" step="1" min="0" max="10" >
+                    <button class="btn btn-success btn-sm">Add To Cart</button>
+                </form>
+            <% } %> 
+
             <% if(currentUser) { %> 
             <form action="/menu/<%= menuItem._id %>?_method=DELETE" method="POST">
-                <button class="btn btn-danger">Delete From Menu</button>
+                <button class="btn btn-danger btn-sm">Delete From Menu</button>
             </form>
         <% } %>
         </div>
