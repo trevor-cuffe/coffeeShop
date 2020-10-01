@@ -56,6 +56,12 @@ h3 {
 	background-color: #311b1b;
 }
 
+.para {
+	background-color: rgba(50, 50, 50, 0.6);
+	margin: 50px 20% 80px;
+	padding: 10%;
+}
+
 
 .menu {
 	background-color: rgba(50, 50, 50, 0.6);
@@ -73,13 +79,16 @@ h3 {
 	padding: 0;
 	margin: 30vh auto 80px;
 	max-width: 100%;
-	border-radius: 0 30px 30px 0;
-	-webkit-border-radius: 0 30px 30px 0;
-	-moz-border-radius: 0 30px 30px 0;
+	border-radius: 0 25px 25px 0;
+	-webkit-border-radius: 0 25px 25px 0;
+	-moz-border-radius: 0 25px 25px 0;
 	overflow: hidden;
 	display: grid;
 	grid-gap: 0;
 	grid-template-columns: repeat(2, 1fr);
+}
+
+.menu, .authCard, .para {
 	box-shadow: 0 10px 16px rgba(0,0,0,0.5),
 				0 6px 20px rgba(0,0,0,0.3);
 	-webkit-box-shadow: 0 10px 16px rgba(0,0,0,0.5),
