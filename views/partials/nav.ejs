@@ -5,13 +5,11 @@
         
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item <% if(currentPath === "/") { %>active<% }%> px-1"><a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item <% if(currentPath === "/menu") { %>active<% }%> px-1"><a class="nav-link" href="/menu">Menu</a></li>
-                <li class="nav-item <% if(currentPath === "/connect") { %>active<% }%> px-1"><a class="nav-link" href="#">Connect <i class="fas fa-user-friends"></i></a></li>
-                <li class="nav-item <% if(currentPath === "/about") { %>active<% }%> px-1 mr-3"><a class="nav-link" href="/about">About</a></li>
+                <li class="nav-item <% if(currentPath === "/menu") { %>active<% }%> px-1"><a class="nav-link" href="/menu">Menu <% if(currentPath === "/menu") { %><span class="sr-only">(current)</span><% }%></a></li>
+                <li class="nav-item <% if(currentPath === "/connect") { %>active<% }%> px-1"><a class="nav-link" href="#">Connect <i class="fas fa-user-friends"></i> <% if(currentPath === "/current") { %><span class="sr-only">(current)</span><% }%></a></li>
+                <li class="nav-item <% if(currentPath === "/about") { %>active<% }%> px-1 mr-3"><a class="nav-link" href="/about">About <% if(currentPath === "/about") { %><span class="sr-only">(current)</span><% }%></a></li>
                 <% if(currentUser) { %> 
-                    <li class="nav-item <% if(currentPath === "/menu/new") { %>active<% }%> px-1"><a class="nav-link" href="/menu/new">Add Item</a></li>
+                    <li class="nav-item <% if(currentPath === "/menu/new") { %>active<% }%> px-1"><a class="nav-link" href="/menu/new">Add Item <% if(currentPath === "/menu/new") { %><span class="sr-only">(current)</span><% }%></a></li>
                 <% } %> 
                 <!--       <li class="nav-item">
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -22,6 +20,14 @@
                     <li class="nav-item px-1"><a class="nav-link" href="/login">Login <i class="fas fa-user"></i></a></li>
                     <li class="nav-item px-1"><a class="nav-link" href="/register">Register <i class="fas fa-user-plus"></i></a></li>
                 <% } else { %> 
+                    <%
+                        let cartLength = 0;
+                        cart.items.forEach(item => {
+                            cartLength += Number(item.qty);
+                        });
+                    
+                    %>
+                    <li class="nav-item px-1"><a class="nav-link" href="/cart">Cart (<%= cartLength %>)</a></li>
                     <li class="nav-item px-1"><a class="nav-link" href="/logout">Logout <i class="fas fa-sign-out-alt"></i></a></li>
                 <% } %> 
             </ul>
@@ -34,7 +40,7 @@
         
         <% if(currentUser) { %> 
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item px-1 ml-auto mx-4"><a class="nav-link">Logged In: <%= currentUser.username %></a></li>
+                <li class="nav-item px-1 ml-auto mx-4"><a class="nav-link"><%= currentUser.username %></a></li>
             </ul>
         <% } %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

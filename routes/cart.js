@@ -35,7 +35,6 @@ router.get('/', middleware.loginRequired, (req, res) => {
                 cartItems.push(menuItems[i]);
                 for(let j = 0; j < shoppingCart.length; j++) {
                     if (String(shoppingCart[j].id) === String(menuItems[i]._id)) {
-                        console.log("MATCH");
                         cartItems[i].quantity = shoppingCart[j].qty;
                     }
                 }
@@ -59,8 +58,8 @@ router.post('/', middleware.loginRequired, (req, res) => {
             newCart.saveCart(req);
             req.flash("success", "Added item to cart");
         }
-        
-        res.redirect("/menu");
+        res.redirect(req.get('referrer'));
+        // res.redirect("/menu");
 
     });
 });
