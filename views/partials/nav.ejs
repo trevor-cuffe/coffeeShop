@@ -21,14 +21,21 @@
                     <li class="nav-item px-1"><a class="nav-link" href="/register">Register <i class="fas fa-user-plus"></i></a></li>
                 <% } else { %> 
                     <%
+                    
                         let cartLength = 0;
-                        cart.items.forEach(item => {
+                        if(cart.items) {
+                            cart.items.forEach(item => {
                             cartLength += Number(item.qty);
                         });
+                        }
                     
                     %>
-                    <li class="nav-item px-1"><a class="nav-link" href="/cart">Cart (<%= cartLength %>)</a></li>
-                    <li class="nav-item px-1"><a class="nav-link" href="/logout">Logout <i class="fas fa-sign-out-alt"></i></a></li>
+                    <li class="nav-item px-1"><a class="nav-link" href="/cart">
+                        <span class="d-inline d-lg-none">Cart</span><i class="fas fa-shopping-cart d-none d-lg-inline"></i> (<%= cartLength || 0 %>)</a>
+                    </li>
+                    <li class="nav-item px-1"><a class="nav-link" href="/logout">
+                        Logout <i class="fas fa-sign-out-alt"></i></a>
+                    </li>
                 <% } %> 
             </ul>
 

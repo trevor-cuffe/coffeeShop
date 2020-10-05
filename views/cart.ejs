@@ -1,7 +1,52 @@
 <%- include ("partials/header") %>
 
-    <% cartItems.forEach(item => { %> 
-        <li><%= item.name %>: x<%= item.quantity %></li>
-    <% }); %> 
+    <div class="container">
+        <table class="cart limitedDisplay">
+            <thead>
+                <tr>
+                    <th colspan="2">Cart</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <% if (cartItems.length < 1) { %> 
+                    <tr>
+                        <td class="empty">
+                            Your Cart is Empty. <br>
+                            <a class="btn btn-info btn-sm" href="/menu">Browse our menu</a>
+                        </td>
+                    </tr>
+                <% } %> 
+
+                <% cartItems.forEach(item => { %> 
+                    <tr class="cartItem">
+                        <td class="item">
+                            <img src="/images/<%= item.image %>" alt="<%= item.name %> Img">
+                            <%= item.name %>
+                            <span class="quantity"><%= item.quantity %></span>
+                            <span class="price">x  <strong>$<%= Number(item.price).toFixed(2) %></strong> ea.</span>
+                        </td>
+                    </tr>
+                <% }); %> 
+
+                <tr class="cartTotal">
+                    <td>
+                        <% 
+                            let total = 0;
+                            cartItems.forEach(item => {
+                                total += Number(item.price) * item.quantity;
+                            });
+                        %> 
+                        Total: <strong>$<%= total.toFixed(2) %> </strong>
+
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+
 
 <%- include('partials/footer') %>
