@@ -47,8 +47,7 @@ let sessionKey = process.env.SESSION_SECRET || randomString({length: 20});
 let cartKey = process.env.CART_SECRET || randomString({length: 20});
 app.use(sessions({
     cookieName: "session",
-    secret: "my secret",
-    // secret: sessionKey,
+    secret: sessionKey,
     duration: 1000 * 60 * 60 * 24,
     activeDuration: 1000 * 60 * 5,
     httpOnly: true,
@@ -57,8 +56,7 @@ app.use(sessions({
 }));
 app.use(sessions({
     cookieName: "shopping_cart",
-    requestKey: "shopping_cart",
-    // secret: cartKey,
+    secret: cartKey,
     secret: "hello",
     duration: 1000 * 60 * 60 * 24 * 7,
     httpOnly: true,
