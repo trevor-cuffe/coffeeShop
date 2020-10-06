@@ -100,15 +100,9 @@ h3 {
 table.cart {
 	width: 100%;
 	margin: 10vh auto;
-	border: 2px solid black;
+	/* border: 2px solid black; */
 	background-color: white;
 	color: black;
-}
-
-table.cart tbody {
-	/* padding-bottom: 20px; */
-	display: flex;
-	flex-wrap: wrap;
 }
 
 table.cart thead th {
@@ -129,13 +123,9 @@ table.cart thead th button {
 	box-shadow: none;
 }
 
-table.cart tr {
-	width: 100%;
-}
 
 table.cart tr > td.empty {
 	display: block;
-	width: 100%;
 	text-align: center;
 	margin-top: 30px;
 }
