@@ -123,6 +123,10 @@ table.cart thead th button {
 	box-shadow: none;
 }
 
+table.cart {
+	font-size: clamp(1rem, 3vw, 1.5rem);
+}
+
 
 table.cart tr > td.empty {
 	display: block;
@@ -135,8 +139,6 @@ table.cart tr.cartItem td.item {
 	flex-wrap: wrap;
 	align-items: center;
 	padding-top: 20px;
-
-	font-size: 1.5rem;
 }
 table.cart tr.cartItem td.quantity {
 	display: flex;
@@ -171,6 +173,7 @@ tr.cartItem > td.item:hover > span.deleteButton {
 
 tr.cartItem > td.item > img {
 	width: 100px;
+	max-width: 15vw;
 	margin: 0 15px;
 	border: 1px solid gray;
 	box-shadow: 2px 3px 7px;
@@ -192,7 +195,6 @@ tr.cartTotal > td {
 	padding-right: 40px;
 	width: 100%;
 	text-align: right;
-	font-size: 1.5em;
 }
 
 .outOfStock {
