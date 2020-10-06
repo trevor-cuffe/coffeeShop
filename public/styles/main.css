@@ -215,10 +215,22 @@ tr.cartTotal > td {
 }
 
 
+.form-group {
+	display: flex;
+}
+
+.form-group > span {
+	color: white;
+	float: left;
+	text-align: right;
+	width: 80px;
+	padding-right: 10px;
+}
 
 .form-control {
 	display: inline-block;
-	flex: 0 1 100%;
+	width: 100%;
+	/* flex: 0 1 100%; */
 }
 
 .card.bg-light {

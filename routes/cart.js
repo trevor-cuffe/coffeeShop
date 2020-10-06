@@ -7,7 +7,7 @@ import MenuItem from "../models/menuItem.js";
 const router = express.Router();
 
 //view cart
-router.get('/', middleware.loginRequired, (req, res) => {
+router.get('/', (req, res) => {
     //check if there's a current shopping cart session
     if(!req.shopping_cart.cart) {
         req.flash("Error loading cart");
@@ -46,7 +46,7 @@ router.get('/', middleware.loginRequired, (req, res) => {
 });
 
 //add to cart
-router.post('/', middleware.loginRequired, (req, res) => {
+router.post('/', (req, res) => {
     let qty = req.body.quantity;
     MenuItem.findById(req.body.productId, (err, menuItem) => {
         if(err || !req.shopping_cart.cart) {
@@ -65,14 +65,14 @@ router.post('/', middleware.loginRequired, (req, res) => {
 });
 
 //empty cart
-router.delete('/', middleware.loginRequired, (req, res) => {
+router.delete('/', (req, res) => {
     req.shopping_cart.cart.items = [];
     req.flash("success", "Your cart is now empty");
     res.redirect("/cart");
 });
 
 //check out
-router.post('/checkout', middleware.loginRequired, (req, res) => {
+router.post('/checkout', (req, res) => {
     let total = req.body.total;
     req.shopping_cart.cart.items = [];
     req.flash("success", "Thank you for shopping at Cuffee Grounds! Your total was $" + Number(total).toFixed(2));

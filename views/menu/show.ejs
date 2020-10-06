@@ -19,13 +19,11 @@
                 <span class="card-text outOfStockNotification">Out Of Stock</span>
             <% } %> 
 
-            <% if(currentUser) { %> 
-                <form action="/cart" method="POST" id="addToCartForm">
-                    <input type="hidden" name="productId" value=<%= menuItem._id %>>
-                    <input type="number" name="quantity" value="1" step="1" min="0" max="10" >
-                    <button class="btn btn-success btn-sm">Add To Cart</button>
-                </form>
-            <% } %> 
+            <form action="/cart" method="POST" id="addToCartForm">
+                <input type="hidden" name="productId" value=<%= menuItem._id %>>
+                <input type="number" name="quantity" value="1" step="1" min="0" max="10" >
+            <button class="btn btn-success btn-sm" <% if(!menuItem.inStock) { %>disabled<% } %> >Add To Cart</button>
+            </form>
 
             <% if(currentUser) { %> 
             <form action="/menu/<%= menuItem._id %>?_method=DELETE" method="POST">

@@ -22,10 +22,11 @@
                     <textarea class="form-control" form="newMenuItem" name="menuItem[description]" placeholder="Description..." required></textarea>
                 </div>
                 <div class="form-group">
-                    $ <input type="number" class="form-control" name="menuItem[price]" placeholder="0.00" required>
+                    <span>Price: $</span>
+                    <input type="number" class="form-control" name="menuItem[price]" placeholder="0.00" required>
                 </div>
                 <div class="form-group">
-                    In Stock? 
+                    <span>In Stock?</span>
                     <select id="inStockSelect" class="form-control" name="menuItem[inStock]">
                         <option value="true" selected>yes</option>
                         <option value="false">no</option>
