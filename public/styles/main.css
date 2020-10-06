@@ -106,7 +106,7 @@ table.cart {
 }
 
 table.cart tbody {
-	padding-bottom: 20px;
+	/* padding-bottom: 20px; */
 	display: flex;
 	flex-wrap: wrap;
 }
@@ -115,6 +115,18 @@ table.cart thead th {
 	text-align: center;
 	border-bottom: 2px solid black;
 	font-size: 2rem;
+	position: relative;
+}
+
+table.cart thead th button {
+	position: absolute;
+	right: 20px;
+	top: 15%;
+	height: 70%;
+}
+
+.btn:active, .btn:focus {
+	box-shadow: none;
 }
 
 table.cart tr {
@@ -150,6 +162,23 @@ table.cart tr.cartItem::after {
 	border-bottom: 1px solid black;
 }
 
+tr.cartItem > td.item > span.deleteButton {
+	width: 0px;
+	padding: 5px;
+	border-radius: 10%;
+	text-align: center;
+	opacity: 0;
+	margin: 15px;
+	color: white;
+	background-color: red;
+	transition: width 0.25s linear, opacity 0.25s linear;
+}
+
+tr.cartItem > td.item:hover > span.deleteButton {
+	width: 50px;
+	opacity: 1;
+}
+
 tr.cartItem > td.item > img {
 	width: 100px;
 	margin: 0 15px;
@@ -158,11 +187,9 @@ tr.cartItem > td.item > img {
 }
 
 tr.cartItem > td.item > span.quantity {
-	/* display: table-cell; */
 	margin-left: auto;
 	margin-right: 20px;
 	width: 2em;
-	/* vertical-align: middle; */
 }
 
 tr.cartItem > td.item > span.price {

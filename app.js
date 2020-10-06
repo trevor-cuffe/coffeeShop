@@ -58,7 +58,8 @@ app.use(sessions({
 app.use(sessions({
     cookieName: "shopping_cart",
     requestKey: "shopping_cart",
-    secret: cartKey,
+    // secret: cartKey,
+    secret: "hello",
     duration: 1000 * 60 * 60 * 24 * 7,
     httpOnly: true,
     secure: true,

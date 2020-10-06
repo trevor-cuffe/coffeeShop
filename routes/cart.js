@@ -64,6 +64,21 @@ router.post('/', middleware.loginRequired, (req, res) => {
     });
 });
 
+//empty cart
+router.delete('/', middleware.loginRequired, (req, res) => {
+    req.shopping_cart.cart.items = [];
+    req.flash("success", "Your cart is now empty");
+    res.redirect("/cart");
+});
+
+//check out
+router.post('/checkout', middleware.loginRequired, (req, res) => {
+    let total = req.body.total;
+    req.shopping_cart.cart.items = [];
+    req.flash("success", "Thank you for shopping at Cuffee Grounds! Your total was $" + Number(total).toFixed(2));
+    res.redirect("/menu");
+})
+
 
 
 export default router;
