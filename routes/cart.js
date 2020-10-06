@@ -56,7 +56,7 @@ router.post('/', (req, res) => {
             let newCart = new Cart(req.shopping_cart.cart);
             newCart.addToCart(menuItem, qty);
             newCart.saveCart(req);
-            req.flash("success", "Added item to cart");
+            req.flash("success", "Added item to cart! <strong class='ml-3'>(<a href='/cart'>Go To Cart</a>)</strong>");
         }
         res.redirect(req.get('referrer'));
         // res.redirect("/menu");

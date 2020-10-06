@@ -252,6 +252,14 @@ tr.cartTotal > td {
 	color: white;
 }
 
+.flashMessage.container .alert-success a {
+	color: #3E774B;
+}
+
+.flashMessage.container .alert-danger a {
+	color: #311B1B;
+}
+
 .authCard .imgDisplay {
 	display: flex;
 	background-image: url("../images/welcome.jpg");
