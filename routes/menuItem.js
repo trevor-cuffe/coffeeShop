@@ -44,12 +44,12 @@ router.get("/", (req, res) => {
 });
 
 //NEW
-router.get("/new", middleware.loginRequired, (req, res) => {
+router.get("/new", middleware.restrictToAdmin, (req, res) => {
     res.render("menu/new");
 });
 
 //CREATE
-router.post("/", middleware.loginRequired, (req, res) => {
+router.post("/", middleware.restrictToAdmin, (req, res) => {
     let newMenuItem = req.body.menuItem;
     if (!newMenuItem.image) {
         newMenuItem.image = "/images/default.jpg";
@@ -84,7 +84,7 @@ router.get("/:id", (req, res) => {
 });
 
 //EDIT
-router.get("/:id/edit", middleware.loginRequired, (req, res) => {
+router.get("/:id/edit", middleware.restrictToAdmin, (req, res) => {
     let id = req.params.id;
     MenuItem.findById(id, (err, menuItem) => {
         if (err) {
@@ -100,7 +100,7 @@ router.get("/:id/edit", middleware.loginRequired, (req, res) => {
 
 //UPDATE
 
-router.put("/:id", middleware.loginRequired, (req, res) => {
+router.put("/:id", middleware.restrictToAdmin, (req, res) => {
     let id = req.params.id;
     let newMenuItem = req.body.menuItem;
     if (!newMenuItem.image) {
@@ -121,7 +121,7 @@ router.put("/:id", middleware.loginRequired, (req, res) => {
 });
 
 //DELETE
-router.delete("/:id", middleware.loginRequired, (req, res) => {
+router.delete("/:id", middleware.restrictToAdmin, (req, res) => {
     let id = req.params.id;
     MenuItem.findByIdAndDelete(id, (err) => {
         if (err) {

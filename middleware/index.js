@@ -10,7 +10,11 @@ middlewareObj.loginRequired = (req, res, next) => {
 
 
 middlewareObj.restrictToAdmin = (req, res, next) => {
-    // if (req.user._id === )
+    if (req.user && req.user.isAdmin) {
+        return next();
+    }
+    req.flash("error", "You don't have permissions to visit this page");
+    res.redirect("/");
 }
 
 export default middlewareObj;

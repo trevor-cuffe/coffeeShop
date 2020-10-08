@@ -30,6 +30,10 @@ router.get("/register", (req, res) => {
 router.post("/register", (req, res) => {
     console.log("post route reached");
     let newUser = new User({username: req.body.username});
+    if (process.env.adminCode && process.env.adminCode === req.body.adminCode) {
+        req.flash("success","Admin privileges assigned");
+        newUser.isAdmin = true;
+    }
     User.register(newUser, req.body.password, (err) => {
         if (err) {
             console.error(err);
@@ -46,7 +50,12 @@ router.post("/register", (req, res) => {
 
 //Show Login Page
 router.get("/login", (req, res) => {
-    res.render("login");
+    if(req.user) {
+        req.flash("error", "You are already logged in");
+        res.redirect("back");
+    } else {
+        res.render("login");
+    }
 });
 
 //Handle Login Logic

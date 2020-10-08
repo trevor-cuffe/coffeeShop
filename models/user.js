@@ -5,10 +5,10 @@ mongoose.set("useFindAndModify", false);
 
 const UserSchema = new mongoose.Schema({
     username: String,
+    password: String,
     // firstName: String,
     // lastName: String,
-    password: String
-    // isAdmin: Boolean
+    isAdmin: {type: Boolean, default: false}
 });
 
 UserSchema.plugin(passportLocalMongoose);

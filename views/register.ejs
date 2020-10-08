@@ -8,11 +8,15 @@
             <form action="/register" method="POST">
                 <div class="form-group">
                     <span>Email:</span> 
-                    <input class="form-control" name="username" type="email" placeholder="example@gmail.com" required>
+                    <input class="form-control" name="username" type="email" placeholder="example@gmail.com" required autofocus>
                 </div>
                 <div class="form-group">
                     <span>Password:</span> 
                     <input class="form-control" name="password" type="password" placeholder="minimum 8 chars" minlength="8" required>
+                </div>
+                <div class="form-group">
+                    <span>Code:</span> 
+                    <input class="form-control" name="adminCode" type="password" placeholder="optional code">
                 </div>
                 <button class="btn btn-success">Login</button>
             </form>
