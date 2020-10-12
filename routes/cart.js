@@ -71,6 +71,24 @@ router.delete('/', (req, res) => {
     res.redirect("/cart");
 });
 
+//delete item
+router.delete('/:id', (req, res) => {
+    if(!req.shopping_cart.cart.items) {
+        req.flash("error", "ERROR: Could not find shopping cart");
+        res.redirect("/menu");
+    }
+    req.shopping_cart.cart.items.forEach((item, index) => {
+        if (item.id === req.params.id) {
+            req.shopping_cart.cart.items.splice(index,1);
+            req.flash("success", "Item removed from cart");
+            res.redirect("/cart");
+        }
+    });
+    
+    req.flash("error", "Error: Could not remove item");
+    res.redirect("/cart");
+})
+
 //check out
 router.post('/checkout', (req, res) => {
     let total = req.body.total;

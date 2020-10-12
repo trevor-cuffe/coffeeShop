@@ -9,7 +9,7 @@
     <% } %> 
     <a class="mx-4" href="/menu"><i class="fas fa-arrow-left"></i> Back</a>
     <div class="card bg-light"  id="menuItemCard" style="width: 100%;">
-        <img class="card-img-top" alt= "<% menuItem.name %> image"  src="/images/<%= menuItem.image %>">
+        <img class="card-img-top" alt= "<% menuItem.name %> image"  src="/images/<%= menuItem.image %>" onerror="this.onerror=null;this.src='/images/default.jpg'">
 
         <div class="card-body">
             <h4 class="float-right">$<%= menuItem.price %></h4>
