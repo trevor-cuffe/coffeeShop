@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
 	margin: 0;
 	padding: 0;
 	width: 100%;
@@ -32,7 +33,6 @@ h3 {
 	font-size: 2em;
 }
 
-
 /*Color Themes*/
 
 .themeDark {
@@ -40,7 +40,7 @@ h3 {
 }
 
 .themeLight {
-	background-color: #806A6A;
+	background-color: #806a6a;
 	color: white;
 }
 
@@ -50,7 +50,6 @@ h3 {
 }
 
 /*End Color Themes*/
-
 
 .bg-customDark {
 	background-color: #311b1b;
@@ -62,12 +61,10 @@ h3 {
 	padding: 10%;
 }
 
-
 .menu {
 	background-color: rgba(50, 50, 50, 0.6);
-	margin: 50px 20% 80px;
+	margin: 50px auto 80px;
 }
-
 
 .limitedDisplay {
 	max-width: 600px;
@@ -88,13 +85,13 @@ h3 {
 	grid-template-columns: repeat(2, 1fr);
 }
 
-.menu, .authCard, .para, table.cart {
-	box-shadow: 0 10px 16px rgba(0,0,0,0.5),
-				0 6px 20px rgba(0,0,0,0.3);
-	-webkit-box-shadow: 0 10px 16px rgba(0,0,0,0.5),
-				0 6px 20px rgba(0,0,0,0.3);
-	-moz-box-shadow: 0 10px 16px rgba(0,0,0,0.5),
-				0 6px 20px rgba(0,0,0,0.3);
+.menu,
+.authCard,
+.para,
+table.cart {
+	box-shadow: 0 10px 16px rgba(0, 0, 0, 0.5), 0 6px 20px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 0 10px 16px rgba(0, 0, 0, 0.5), 0 6px 20px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0 10px 16px rgba(0, 0, 0, 0.5), 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 table.cart {
@@ -120,10 +117,10 @@ table.cart thead th button {
 	height: 70%;
 }
 
-.btn:active, .btn:focus {
+.btn:active,
+.btn:focus {
 	box-shadow: none;
 }
-
 
 table.cart tr > td.empty {
 	display: block;
@@ -151,7 +148,7 @@ table.cart tr.cartItem::after {
 	border-bottom: 1px solid black;
 }
 
-tr.cartItem > td.item  button.deleteButton {
+tr.cartItem > td.item button.deleteButton {
 	padding: 5px;
 	border: none;
 	background-color: rgba(255, 255, 255, 0);
@@ -162,7 +159,7 @@ tr.cartItem > td.item  button.deleteButton {
 	transition: opacity 0.25s linear;
 }
 
-tr.cartItem > td.item:hover  button.deleteButton {
+tr.cartItem > td.item:hover button.deleteButton {
 	opacity: 1;
 }
 
@@ -201,7 +198,6 @@ tr.cartTotal > td {
 	font-weight: 600;
 }
 
-
 .form-group {
 	display: flex;
 }
@@ -233,7 +229,7 @@ tr.cartTotal > td {
 }
 
 .menu .header {
-	background-color: #806A6A;
+	background-color: #806a6a;
 	text-align: center;
 	padding: 20px;
 	margin: 0;
@@ -256,11 +252,11 @@ tr.cartTotal > td {
 }
 
 .flashMessage.container .alert-success a {
-	color: #3E774B;
+	color: #3e774b;
 }
 
 .flashMessage.container .alert-danger a {
-	color: #311B1B;
+	color: #311b1b;
 }
 
 .authCard .imgDisplay {
@@ -290,7 +286,6 @@ tr.cartTotal > td {
 #newMenuItem {
 	color: black;
 }
-
 
 @media only screen and (max-width: 767px) {
 	body {
