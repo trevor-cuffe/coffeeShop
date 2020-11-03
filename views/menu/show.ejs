@@ -7,7 +7,7 @@
     <% if(currentUser && currentUser.isAdmin) { %> 
         <a class="mx-2 float-right" href="edit"><i class="fas fa-edit"></i></a>
     <% } %> 
-    <a class="mx-4" href="/menu"><i class="fas fa-arrow-left"></i> Back</a>
+    <a class="mx-4" href="/menu"><i class="fas fa-arrow-left"></i> Menu</a>
     <div class="card bg-light"  id="menuItemCard" style="width: 100%;">
         <img class="card-img-top" alt= "<% menuItem.name %> image"  src="/images/<%= menuItem.image %>" onerror="this.onerror=null;this.src='/images/default.jpg'">
 
