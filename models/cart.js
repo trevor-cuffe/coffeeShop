@@ -12,7 +12,6 @@ class Cart {
         let index = -1;
         this.data.items.forEach((item, pos) => {
             if(String(item.id) === String(productID)) {
-                console.log("match");
                 index = pos;
             }
         });

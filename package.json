@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node app.js",
+    "dev": "nodemon -r dotenv/config app.js"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,10 @@
     "mongoose": "^5.10.5",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "passport-local-mongoose": "^6.0.1"
+    "passport-local-mongoose": "^6.0.1",
+    "stripe": "^8.120.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0"
   }
 }

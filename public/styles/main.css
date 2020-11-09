@@ -117,6 +117,10 @@ table.cart thead th button {
 	height: 70%;
 }
 
+#checkout {
+	margin: 20px;
+}
+
 .btn:active,
 .btn:focus {
 	box-shadow: none;

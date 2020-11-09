@@ -1,10 +1,15 @@
 import express from "express";
-import mongoose from "mongoose";
-import middleware from "../middleware/index.js"
+import Stripe from "stripe";
 import Cart from "../models/cart.js";
 import MenuItem from "../models/menuItem.js";
 
 const router = express.Router();
+
+//Set Stripe Keys
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
+
+const stripe = new Stripe(stripeSecretKey);
 
 //view cart
 router.get('/', (req, res) => {
@@ -39,7 +44,10 @@ router.get('/', (req, res) => {
                     }
                 }
             }
-            res.render("cart", {cartItems: cartItems});
+            res.render("cart", {
+                stripePublicKey: stripePublicKey,
+                cartItems: cartItems
+            });
         }
     });
 
@@ -77,24 +85,54 @@ router.delete('/:id', (req, res) => {
         req.flash("error", "ERROR: Could not find shopping cart");
         res.redirect("/menu");
     }
+
+    let found = false;
     req.shopping_cart.cart.items.forEach((item, index) => {
         if (item.id === req.params.id) {
             req.shopping_cart.cart.items.splice(index,1);
             req.flash("success", "Item removed from cart");
-            res.redirect("/cart");
+            found = true;
         }
     });
     
-    req.flash("error", "Error: Could not remove item");
+    if (!found) req.flash("error", "Error: Could not remove item");
     res.redirect("/cart");
 })
 
 //check out
-router.post('/checkout', (req, res) => {
-    let total = req.body.total;
-    req.shopping_cart.cart.items = [];
-    req.flash("success", "Thank you for shopping at Cuffee Grounds! Your total was $" + Number(total).toFixed(2));
-    res.redirect("/menu");
+router.post('/create-checkout-session', async (req, res) => {
+
+    const purchaseData = req.body.purchaseData;
+    let lineItems = await Promise.all(purchaseData.map( async item => {
+        const foundItem = await MenuItem.findById(item.id);
+        return {
+            price_data: {
+                currency: 'usd',
+                product_data: {
+                    name: foundItem.name,
+                },
+                unit_amount: foundItem.price * 100,
+            },
+            quantity: item.quantity,
+        }
+    }));
+    console.log(lineItems);
+
+    const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items: lineItems,
+        mode: 'payment',
+        success_url: 'https://cuffee-grounds.herokuapp.com/menu',
+        cancel_url: 'https://cuffee-grounds.herokuapp.com/cart',
+    });
+
+    res.send({ id: session.id });
+
+
+    // let total = req.body.total;
+    // req.shopping_cart.cart.items = [];
+    // req.flash("success", "Thank you for shopping at Cuffee Grounds! Your total was $" + Number(total).toFixed(2));
+    // res.redirect("/menu");
 })
 
 

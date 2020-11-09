@@ -20,6 +20,7 @@ import seedDB from "./seeds.js";
 const app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.json());
 app.use(express.static("public"));
 app.use(express.static("images"));
 app.set("view engine", "ejs");
@@ -63,6 +64,7 @@ app.use(sessions({
     ephemeral: false
 }));
 
+//set up new shopping cart if there is not an existing one
 app.use((req, res, next) => {
     if(!req.shopping_cart.cart) {
         let newCart = new Cart();
@@ -78,6 +80,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 //Define Local Variables
 app.use( (req, res, next) => {
     res.locals.currentUser = req.user;
@@ -87,11 +90,6 @@ app.use( (req, res, next) => {
     res.locals.success_message = req.flash("success");
     return next();
 });
-
-// app.use( (req, res, next) => {
-//     console.log(req.originalUrl);
-//     return next();
-// })
 
 
 //Include Routes
