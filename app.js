@@ -19,6 +19,13 @@ import seedDB from "./seeds.js";
 
 const app = express();
 
+//set deployment mode
+const deployMode = process.env.deploy_mode || 'development';
+
+//=============================//
+//====  CONFIGURE EXPRESS  ====//
+//=============================//
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.json());
 app.use(express.static("public"));
@@ -26,6 +33,27 @@ app.use(express.static("images"));
 app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
 app.use(flash());
+
+
+//=============================//
+//=========  SECURITY  ========//
+//=============================//
+
+const forceSSL = function (req, res, next) {
+    if (req.headers['x-forwarded-proto'] !== 'https') {
+        return res.redirect('https://' + req.hostname + req.url);
+    }
+    return next();
+}
+
+if(deployMode === 'production') {
+    app.use(forceSSL);
+}
+
+
+//=============================//
+//====  DATABASE - MONGO  =====//
+//=============================//
 
 //fix mongoose deprecation warnings:
 mongoose.set('useNewUrlParser', true);
@@ -93,6 +121,8 @@ app.use( (req, res, next) => {
 
 
 //Include Routes
+
+
 app.use(indexRoutes);
 app.use("/menu", menuRoutes);
 app.use("/cart", cartRoutes)
